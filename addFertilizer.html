@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+ <title>Dodawanie nawozu</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand d-flex flex-column align-items-start active-nav" id="sidebar">
+      <a href="addFertilizer.html" class="navbar-brand text-light mt-5">
+        <div class="display-5 font-weight-bold">Kordal</div>
+      </a>
+      <ul class="navbar-nav d-flex flex-column mt-5 w-100">
+        
+        <!-- <li class="nav-item w-100">
+          <a href="#" class="nav-link text-light pl-4">Dodaj klasę ziemi</a>
+        </li> -->
+     
+        <li class="nav-item dropdown w-100">
+          <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dodawanie</a>
+
+           <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
+            
+              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj klasę ziemi</a></li>
+              <li><a href="addFertilizer.html" class="dropdown-item text-light pl-5 p-2">Dodaj roślinę</a></li>
+              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj nawóz</a></li>
+              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj cenę rośliny</a></li>
+              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj przewidywany plon</a></li>
+              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj plan nawożenia</a></li>
+              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj pole</a></li>
+           </ul>
+        </li>
+      </ul>
+    </nav>
+    
+    <section class="p-4 my-container active-cont">
+      <button class="btn my-4 menu-btn"> Toggle sidebar</button>
+      
+
+      <h1>Dodawanie nawozu</h1>
+    
+      <form>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="">Nazwa nawozu oraz cena za tonę</span>
+          </div>
+          <input type="text" class="form-control">
+          <input type="text" class="form-control">
+        </div>
+
+      <button type="submit" class="btn btn-primary menu-btn">Dodaj do bazy</button>
+      </form>
+
+    </section>
+
+
+ <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<!-- custom js -->
+<script>
+  var menu_btn = document.querySelector(".menu-btn")
+  var sidebar = document.querySelector("#sidebar")
+  var container = document.querySelector(".my-container")
+  
+  menu_btn.addEventListener("click", () =>{
+    sidebar.classList.toggle("active-nav")
+    container.classList.toggle("active-cont")
+  })
+
+</script>
+
+</body>
+
+</html>
