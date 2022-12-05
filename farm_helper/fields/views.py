@@ -19,7 +19,7 @@ def add_fertilizer(request):
         else:
             return HttpResponse("""Błędne dane. <a href = "{{ url : 'index'}}">Odśwież</a>""")
     else:
-        return render(request, 'fields/addFertilizer.html', {'add_fertilizer': add_fertilizer})
+        return render(request, 'fields/addFertilizer.html', {'upload_form': add_fertilizer})
 
 
 def update_fertilizer(request, fertilizer_id):
