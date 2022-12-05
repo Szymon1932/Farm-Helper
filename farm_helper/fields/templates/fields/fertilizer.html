@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,13 +20,12 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
     rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} ">
  <title>Dodawanie nawozu</title>
 </head>
 <body>
-
     <nav class="navbar navbar-expand d-flex flex-column align-items-start active-nav" id="sidebar">
-      <a href="addFertilizer.html" class="navbar-brand text-light mt-5">
+      <a href="{% url 'index' %}" class="navbar-brand text-light mt-5">
         <div class="display-5 font-weight-bold">Kordal</div>
       </a>
       <ul class="navbar-nav d-flex flex-column mt-5 w-100">
@@ -40,8 +40,8 @@
            <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
             
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj klasę ziemi</a></li>
-              <li><a href="addFertilizer.html" class="dropdown-item text-light pl-5 p-2">Dodaj roślinę</a></li>
-              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj nawóz</a></li>
+              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj roślinę</a></li>
+              <li><a href="{% url 'add-fertilizer' %}" class="dropdown-item text-light pl-5 p-2">Dodaj nawóz</a></li>
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj cenę rośliny</a></li>
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj przewidywany plon</a></li>
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj plan nawożenia</a></li>
@@ -54,21 +54,23 @@
     <section class="p-4 my-container active-cont">
       <button class="btn my-4 menu-btn"> Toggle sidebar</button>
       
-
-      <h1>Dodawanie nawozu</h1>
-    
-      <form>
-
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="">Nazwa nawozu oraz cena za tonę</span>
+      {% block content %}
+      <h1>Spis nawozów</h1>
+      <div class="row">
+        {% for fertilizer in fertilizers %}
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ fertilizer.fertilizer_name}}</h5>
+              <p class="card-text">{{ fertilizer.price}}</p>
+              <a href="update/{{fertilizer.id}}" class="btn my-2 menu-btn">Edytuj</a>
+              <a href="delete/{{fertilizer.id}}" class="btn my-2 menu-btn">Usuń</a>
+            </div>
           </div>
-          <input type="text" class="form-control">
-          <input type="text" class="form-control">
         </div>
-
-      <button type="submit" class="btn btn-primary menu-btn">Dodaj do bazy</button>
-      </form>
+        {% endfor %}
+      </div>
+    {% endblock %}
 
     </section>
 

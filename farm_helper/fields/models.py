@@ -41,7 +41,7 @@ class Fertilizer(models.Model):
         db_table = 'Fertilizer'
 
     def __str__(self):
-        return "Fertilizer name: " + self.fertilizer_name + ", fertilizer price: " + self.price
+        return "Fertilizer name: " + self.fertilizer_name + ", fertilizer price: " + str(self.price)
 
 
 class PlantPrice(models.Model):

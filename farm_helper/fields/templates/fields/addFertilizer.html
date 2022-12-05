@@ -1,0 +1,23 @@
+{% extends 'fields/fertilizer.html' %}
+{% block content %}
+      <h1>Dodawanie nawozu</h1>
+      <form>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Nawoz</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">cena</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+      <button type="submit" class="btn btn-primary menu-btn">Dodaj do bazy</button>
+      </form>
+
+    </section>
+    {% endblock %}
