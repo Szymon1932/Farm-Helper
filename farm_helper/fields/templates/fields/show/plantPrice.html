@@ -1,0 +1,20 @@
+{% extends 'fields/index.html' %}
+      {% block content %}
+      <h1>Spis cen roślin</h1>
+      <div class="row">
+        {% for plant_price in plant_prices %}
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ plant_price.price}}</h5>
+              <p class="card-text">{{ plant_price.date}}</p>
+              <p class="card-text">{{ plant_price.plant}}</p>
+              <p class="card-text">{{ plant_price.is_predicted}}</p>
+              <a href="update/{{plant_price.id}}" class="btn my-2 menu-btn">Edytuj</a>
+              <a href="delete/{{plant_price.id}}" class="btn my-2 menu-btn">Usuń</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endblock %}
