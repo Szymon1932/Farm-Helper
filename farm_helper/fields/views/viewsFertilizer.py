@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Fertilizer
-from .forms import CreateFertilizer
+from ..models import Fertilizer
+from ..forms import CreateFertilizer
 from django.http import HttpResponse
 
 
 def show_fertilizers(request):
     fertilizers = Fertilizer.objects.all()
-    return render(request, 'fields/fertilizer.html', {'fertilizers': fertilizers})
+    return render(request, 'fields/show/fertilizer.html', {'fertilizers': fertilizers})
 
 
 def index(request):
@@ -23,7 +23,7 @@ def add_fertilizer(request):
         else:
             return HttpResponse("""Błędne dane. <a href = "{{ url : 'show-fertilizers'}}">Odśwież</a>""")
     else:
-        return render(request, 'fields/addFertilizer.html', {'upload_form': add_fertilizer})
+        return render(request, 'fields/add/addFertilizer.html', {'upload_form': add_fertilizer})
 
 
 def update_fertilizer(request, fertilizer_id):
@@ -37,7 +37,7 @@ def update_fertilizer(request, fertilizer_id):
     if fertilizer_form.is_valid():
         fertilizer_form.save()
         return redirect('show-fertilizers')
-    return render(request, 'fields/addFertilizer.html', {'upload_form': fertilizer_form})
+    return render(request, 'fields/add/addFertilizer.html', {'upload_form': fertilizer_form})
 
 
 def delete_fertilizer(request, fertilizer_id):
