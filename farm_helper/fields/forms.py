@@ -16,8 +16,8 @@ class CreateClassField(forms.ModelForm):
         fields = '__all__'
 
 
-class CreateFertilizer(forms.ModelForm):
+class CreatePlant(forms.ModelForm):
 
     class Meta:
-        model = Fertilizer
+        model = Plant
         fields = '__all__'
