@@ -39,7 +39,7 @@
           <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dodawanie</a>
 
            <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
-              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj klasę ziemi</a></li>
+              <li><a href="{% url 'add-class_field' %}" class="dropdown-item text-light pl-5 p-2">Dodaj klasę ziemi</a></li>
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj roślinę</a></li>
               <li><a href="{% url 'add-fertilizer' %}" class="dropdown-item text-light pl-5 p-2">Dodaj nawóz</a></li>
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Dodaj cenę rośliny</a></li>
@@ -54,7 +54,7 @@
           <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Podgląd</a>
 
            <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
-              <li><a href="#" class="dropdown-item text-light pl-5 p-2">Pokaż klasy ziemi</a></li>
+              <li><a href="{% url 'show-class_fields' %}" class="dropdown-item text-light pl-5 p-2">Pokaż klasy ziemi</a></li>
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Pokaż rośliny</a></li>
               <li><a href="{% url 'show-fertilizers' %}" class="dropdown-item text-light pl-5 p-2">Pokaż nawozy</a></li>
               <li><a href="#" class="dropdown-item text-light pl-5 p-2">Pokaż ceny roślin</a></li>
