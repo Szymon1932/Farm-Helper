@@ -43,3 +43,10 @@ class CreatePredictedCrop(forms.ModelForm):
     class Meta:
         model = PredictedCrop
         fields = '__all__'
+
+
+class CreateFertilizationPlan(forms.ModelForm):
+
+    class Meta:
+        model = FertilizationPlan
+        fields = '__all__'

@@ -47,7 +47,7 @@ class Fertilizer(models.Model):
         db_table = 'Fertilizer'
 
     def __str__(self):
-        return "Fertilizer name: " + self.fertilizer_name + ", fertilizer price: " + str(self.price)
+        return self.fertilizer_name
 
 
 class PlantPrice(models.Model):
@@ -59,11 +59,9 @@ class PlantPrice(models.Model):
     class Meta:
         db_table = 'PlantPrice'
 
-    def __str__(self):
-        return "Plant name: " + self.plant + ", date of price: " + self.price + ", plant price " + self.price + ", price predicted: " + self.is_predicted
-
 
 class PredictedCrop(models.Model):
+    #name = models.CharField(max_length=50)
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
     crop_mass = models.DecimalField(max_digits=10, decimal_places=2)
     # Field renamed because it was a Python reserved word.
@@ -73,11 +71,9 @@ class PredictedCrop(models.Model):
     class Meta:
         db_table = 'PredictedCrop'
 
-    def __str__(self):
-        return "plant key: " + self.plant + ", crop mass: " + self.crop_mass + ", class field key" + self.class_field
-
 
 class FertilizationPlan(models.Model):
+    #name = models.CharField(max_length=50)
     predicted_crop = models.ForeignKey(
         'PredictedCrop', on_delete=models.CASCADE)
     fertilizer = models.ForeignKey('Fertilizer', on_delete=models.CASCADE)
@@ -86,11 +82,9 @@ class FertilizationPlan(models.Model):
     class Meta:
         db_table = 'FertilizationPlan'
 
-    def __str__(self):
-        return "predicted crop key: " + self.predicted_crop + ", fertilizer key: " + self.fertilizer + ", fertilizer mass " + self.fertilizer_mass
-
 
 class Field(models.Model):
+    #name = models.CharField(max_length=50)
     area = models.DecimalField(max_digits=10, decimal_places=2)
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     fertilization_plan = models.ForeignKey(
@@ -98,6 +92,3 @@ class Field(models.Model):
 
     class Meta:
         db_table = 'Field'
-
-    def __str__(self):
-        return "field area: " + self.area + ", user key: " + self.fertilizer + ", fertilization plan " + self.fertilizer_mass
