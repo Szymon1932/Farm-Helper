@@ -1,0 +1,19 @@
+{% extends 'fields/index.html' %}
+      {% block content %}
+      <h1>Spis cen roślin</h1>
+      <div class="row">
+        {% for predicted_crop in predicted_crops %}
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ predicted_crop.plant}}</h5>
+              <p class="card-text">{{ predicted_crop.crop_mass}}</p>
+              <p class="card-text">{{ predicted_crop.class_field}}</p>
+              <a href="update/{{predicted_crop.id}}" class="btn my-2 menu-btn">Edytuj</a>
+              <a href="delete/{{predicted_crop.id}}" class="btn my-2 menu-btn">Usuń</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endblock %}

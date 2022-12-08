@@ -1,12 +1,13 @@
 from django.urls import path
-from .views import viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice
+from .views import viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice, viewsPredictedCrop
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('', viewsFertilizer.index, name='index'),
 
     # fertilizers
-    path('fertilizers/', viewsFertilizer.show_fertilizers, name='show-fertilizers'),
+    path('fertilizers/', viewsFertilizer.show_fertilizers,
+         name='show-fertilizers'),
     path('fertilizers/add_element/',
          viewsFertilizer.add_fertilizer, name='add-fertilizer'),
     path('fertilizers/update/<int:fertilizer_id>',
@@ -47,4 +48,16 @@ urlpatterns = [
          viewsPlantPrice.update_plant_price),
     path('plant_prices/delete/<int:plant_price_id>',
          viewsPlantPrice.delete_plant_price),
+
+    # predictedCrops
+
+    path('predicted_crops/', viewsPredictedCrop.show_predicted_crops,
+         name='show-predicted_crops'),
+    path('predicted_crops/add_element/',
+         viewsPredictedCrop.add_predicted_crop, name='add-predicted_crop'),
+    path('predicted_crops/update/<int:predicted_crop_id>',
+         viewsPredictedCrop.update_predicted_crop),
+    path('predicted_crops/delete/<int:predicted_crop_id>',
+         viewsPredictedCrop.delete_predicted_crop),
+
 ]

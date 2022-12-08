@@ -31,7 +31,7 @@ def update_class_field(request, class_field_id):
     try:
         class_field_obj = ClassField.objects.get(id=class_field_id)
     except ClassField.DoesNotExist:
-        return redirect('show-class-fields')
+        return redirect('show-class_fields')
     class_field_form = CreateClassField(
         request.POST or None, instance=class_field_obj)
     if class_field_form.is_valid():

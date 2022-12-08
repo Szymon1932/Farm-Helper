@@ -24,6 +24,9 @@ class ClassField(models.Model):
     class Meta:
         db_table = 'ClassField'
 
+    def __str__(self):
+        return self.class_name
+
 
 class Plant(models.Model):
     plant_name = models.CharField(max_length=50)
