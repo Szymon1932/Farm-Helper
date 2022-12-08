@@ -32,6 +32,9 @@ class Plant(models.Model):
     class Meta:
         db_table = 'Plant'
 
+    def __str__(self):
+        return self.plant_name
+
 
 class Fertilizer(models.Model):
     fertilizer_name = models.CharField(max_length=50)

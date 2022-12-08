@@ -26,10 +26,10 @@ def add_plant_price(request):
         return render(request, 'fields/add/addPlantPrice.html', {'upload_form': add_plant_price})
 
 
-def update_plant_price(request, plant_price):
-    plant_price = int(plant_price)
+def update_plant_price(request, plant_price_id):
+    plant_price_id = int(plant_price_id)
     try:
-        plant_price_obj = PlantPrice.objects.get(id=plant_price)
+        plant_price_obj = PlantPrice.objects.get(id=plant_price_id)
     except PlantPrice.DoesNotExist:
         return redirect('show-plant_prices')
     plant_price_form = CreatePlantPrice(
@@ -40,10 +40,10 @@ def update_plant_price(request, plant_price):
     return render(request, 'fields/add/addPlantPrice.html', {'upload_form': plant_price_form})
 
 
-def delete_plant_price(request, plant_price):
-    plant_price = int(plant_price)
+def delete_plant_price(request, plant_price_id):
+    plant_price_id = int(plant_price_id)
     try:
-        plant_price_get = PlantPrice.objects.get(id=plant_price)
+        plant_price_get = PlantPrice.objects.get(id=plant_price_id)
     except PlantPrice.DoesNotExist:
         return redirect('show-plant_prices')
     plant_price_get.delete()
