@@ -50,3 +50,10 @@ class CreateFertilizationPlan(forms.ModelForm):
     class Meta:
         model = FertilizationPlan
         fields = '__all__'
+
+
+class CreateField(forms.ModelForm):
+
+    class Meta:
+        model = Field
+        fields = '__all__'

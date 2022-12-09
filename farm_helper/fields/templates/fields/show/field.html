@@ -1,0 +1,19 @@
+{% extends 'fields/index.html' %}
+      {% block content %}
+      <h1>Spis pól</h1>
+      <div class="row">
+        {% for field in fields %}
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ field.area}}</h5>
+              <p class="card-text">{{ field.user}}</p>
+              <p class="card-text">{{ field.fertilization_plan}}</p>
+              <a href="update/{{field.id}}" class="btn my-2 menu-btn">Edytuj</a>
+              <a href="delete/{{field.id}}" class="btn my-2 menu-btn">Usuń</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endblock %}

@@ -92,3 +92,6 @@ class Field(models.Model):
 
     class Meta:
         db_table = 'Field'
+
+# how to save this only for specific user
+# users taken from program
