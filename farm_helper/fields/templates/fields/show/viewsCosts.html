@@ -2,15 +2,15 @@
   {% block content %}
   <h1>Spis nawozow</h1>
   <div class="row">
-    {% for predicted_crop in all_predicted_crops %}
+    {% for prediction_and_cost, value in all_prediction_and_cost %}
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ predicted_crop.fertilizer_name}}</h5>
-          <p>Id nawozu: {{predicted_crop.id}}</p>
-          <p>{{predicted_crop.price}}</p>
-          <a href="update/{predicted_crop.id}}" class="btn my-2 menu-btn">Edytuj</a>
-          <a href="delete/{{predicted_crop.id}}" class="btn my-2 menu-btn">Usuń</a>
+          <h5 class="card-title">{{ prediction_and_cost.plant}}</h5>
+          <p>Id przew_plonu: {{prediction_and_cost.id}}</p>
+          <p>Cena nawożenia: {{value}}</p>
+          <a href="update/{preprediction_and_cost.id}}" class="btn my-2 menu-btn">Edytuj</a>
+          <a href="delete/{{preprediction_and_cost.id}}" class="btn my-2 menu-btn">Usuń</a>
         </div>
       </div>
     </div>

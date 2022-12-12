@@ -8,11 +8,18 @@ from django.http import HttpResponse
 def home(request):
     #all_fertilizers = Fertilizer.objects.all
     all_predicted_crops = []
-    all_predicted_crops.append(Fertilizer.objects.get(id=2))
-    return render(request, 'fields/show/viewsCosts2.html', {'all_fertilizers': crop_fertilization_plans(5)})
+    all_predicted_crops = PredictedCrop.objects.all()  # retrieving all predicted crops
+    prediction_and_cost = []  # list of tuples (pred_crop, value)
+    for predicted_crop in all_predicted_crops:  # counting fertilization cost of prediction
+        prediction_and_cost.append(
+            (predicted_crop, cost_of_fertilization(predicted_crop.id)))
+
+    return render(request, 'fields/show/viewsCosts.html', {'all_prediction_and_cost': prediction_and_cost})
+
+# show
 
 
-def crop_fertilization_plans(pred_crop_id):
+def cost_of_fertilization(pred_crop_id):
     all_fert_plans = FertilizationPlan.objects.filter(
         predicted_crop_id=pred_crop_id)  # id of fertilization plans
     # fert plans contains fertilizer and fert mass
