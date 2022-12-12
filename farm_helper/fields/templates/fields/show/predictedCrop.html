@@ -9,6 +9,7 @@
               <h5 class="card-title">{{ predicted_crop.plant}}</h5>
               <p class="card-text">{{ predicted_crop.crop_mass}}</p>
               <p class="card-text">{{ predicted_crop.class_field}}</p>
+              <p class="card-text">id: {{ predicted_crop.id}}</p>
               <a href="update/{{predicted_crop.id}}" class="btn my-2 menu-btn">Edytuj</a>
               <a href="delete/{{predicted_crop.id}}" class="btn my-2 menu-btn">Usuń</a>
             </div>

@@ -1,0 +1,19 @@
+{% extends 'fields/index.html' %}
+  {% block content %}
+  <h1>Spis nawozow</h1>
+  <div class="row">
+    {% for predicted_crop in all_predicted_crops %}
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ predicted_crop.fertilizer_name}}</h5>
+          <p>Id nawozu: {{predicted_crop.id}}</p>
+          <p>{{predicted_crop.price}}</p>
+          <a href="update/{predicted_crop.id}}" class="btn my-2 menu-btn">Edytuj</a>
+          <a href="delete/{{predicted_crop.id}}" class="btn my-2 menu-btn">Usuń</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
