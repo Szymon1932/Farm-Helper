@@ -48,3 +48,18 @@ def delete_plant(request, plant_id):
         return redirect('show-plants')
     plant_get.delete()
     return redirect('show-plants')
+
+
+def add_names_to_database():
+    add_plant = CreatePlant()
+    names = ['Pszenica konsumpcyjna', 'Kukurydza mokra', 'Kukurydza sucha', 'Żyto konsumpcyjne', 'Pszenżyto',
+             'Jęczmień paszowy', 'Rzepak', 'Żyto paszowe', 'Owies', 'Jęczmień konsumpcyjny', 'Pszenica paszowa']
+    iterator = 0
+    price = 100
+    for n in names:
+        add_plant.plant_name = n
+        iterator = iterator + 1
+        price = price * iterator
+        add_plant.seed_price = price
+        add_plant.save()
+    return redirect('show-plants')  # name in urls

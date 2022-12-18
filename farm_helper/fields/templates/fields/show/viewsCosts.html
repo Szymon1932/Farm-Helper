@@ -10,7 +10,7 @@
           <p>Id przew_plonu: {{prediction_and_cost.id}}</p>
           <p>Cena nawożenia: {{fert_value|floatformat:2}}</p>
           <p>Cena zasiewu: {{seed_value|floatformat:2}}</p>
-          <p>Cena całkowita: {{cost_sum|floatformat:2}}</p>
+          <p>Cena całkowita: {{cost_sum|<floatformat:2></floatformat:2>}}</p>
           <a href="update/{preprediction_and_cost.id}}" class="btn my-2 menu-btn">Edytuj</a>
           <a href="delete/{{preprediction_and_cost.id}}" class="btn my-2 menu-btn">Usuń</a>
         </div>

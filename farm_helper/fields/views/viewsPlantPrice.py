@@ -1,3 +1,5 @@
+import requests
+from datetime import datetime
 from django.shortcuts import render, redirect
 from ..models import PlantPrice, Plant
 from ..forms import CreatePlantPrice
@@ -48,3 +50,44 @@ def delete_plant_price(request, plant_price_id):
         return redirect('show-plant_prices')
     plant_price_get.delete()
     return redirect('show-plant_prices')
+
+
+def get_price_from_source():
+    r = requests.get(
+        'https://www.farmer.pl/wykres/dane/zbozawykres/1/zbozawykres')
+    data = r.json()
+    xAxis = data['xAxis']
+    el = xAxis['categories']
+    dates = []
+    names = []
+    val_temp = []
+    for i in el:
+        dates.append(str(datetime.fromtimestamp(int(i/1000))))
+    values = {}
+    for i, element in enumerate(data['series']):
+        names.append(element['name'])
+        for j, val in enumerate(element['data']):
+            val_temp.append((dates[j], val))
+        values.update({names[i]: val_temp})
+    return values
+
+
+def format_prices_to_database(values):
+    keys = values.keys()
+    output = []
+
+    for keys in keys:
+        for k, v in values.items():
+            if k == keys:
+                for v1, v2 in v:
+                    if v2 != None:
+                        # ('Rzepak', '2021-12-22 00:00:00', 3258.89)
+                        output.append((k, v1, v2))
+
+    return output  # zwraca list of tuples: (Roslina, data, cena, )
+
+
+def auto_add_prices(output):
+    add_plant_price = CreatePlantPrice()
+    for (name, date, price) in (output):
+        pass  # to implementation
