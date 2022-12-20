@@ -87,8 +87,8 @@ urlpatterns = [
          name='show-costs'),
 
     # generate_prices
-    #     path('plant_prices/generate',
-    #          viewsAutoPlantPrice.auto_add_prices, name='generate-prices'),
+    path('plant_prices/generate',
+         viewsAutoPlantPrice.auto_add_prices, name='generate-prices'),
     path('plant_prices/predict',
          viewsAutoPredictPrice.auto_predict_prices, name='predict-prices'),
 ]

@@ -51,7 +51,7 @@ class Fertilizer(models.Model):
 
 
 class PlantPrice(models.Model):
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     date = models.DateField()
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
     is_predicted = models.BooleanField()

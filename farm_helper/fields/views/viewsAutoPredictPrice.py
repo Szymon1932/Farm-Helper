@@ -4,25 +4,37 @@ from django.shortcuts import render, redirect
 from ..models import Plant, PlantPrice
 
 
-def get_plant_price_id(plant_name):
-    # pass
-    try:
-        plant = Plant.objects.get(plant_name=plant_name)
-        return plant.id
-    except plant.DoesNotExist:
+plant_prices_obj = PlantPrice.objects.all()
+
+
+def retrieve_plant_names():
+    plant_name = []
+    for p in plant_prices_obj:
+        plant_name.append(p.plant)
+    return set(plant_name)
+
+
+def predict_plant_price(plant, plant_prices_obj):
+    # machine learning
+    dates = []
+    prices = []
+    # pick max date + half year to predict
+    for p in plant_prices_obj:
         pass
+    for p in plant_prices_obj:
+        if p.is_predicted == 0 and p.plant == plant:
+            prices.append[p.price]
 
 
 def get_data():
     pass
 
 
-def auto_predict_prices(request):
+def auto_predict_prices(request, plant_prices_obj):
     x = []
     y = []
     plant_prices = []
 
-    plant_prices_obj = PlantPrice.objects.all()
     # mamy wszystkie ceny
     # teraz musimy DLA KAZDEGO PLANTA przewidzieć cenę bazującą na cenach poprzednich
     # zebrac wszystkie ceny w listę (key rośliny, cena)
