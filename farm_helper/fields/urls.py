@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice, viewsPredictedCrop, viewsFertilizationPlan, viewsField, viewsCosts, viewsAutoPlantPrice
+from .views import viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice, viewsPredictedCrop, viewsFertilizationPlan, viewsField, viewsCosts, viewsAutoPlantPrice, viewsAutoPredictPrice
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -87,6 +87,8 @@ urlpatterns = [
          name='show-costs'),
 
     # generate_prices
-    path('plant_prices/generate',
-         viewsAutoPlantPrice.auto_add_prices, name='generate-prices'),
+    #     path('plant_prices/generate',
+    #          viewsAutoPlantPrice.auto_add_prices, name='generate-prices'),
+    path('plant_prices/predict',
+         viewsAutoPredictPrice.auto_predict_prices, name='predict-prices'),
 ]

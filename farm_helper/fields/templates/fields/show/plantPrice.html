@@ -1,6 +1,8 @@
 {% extends 'fields/index.html' %}
       {% block content %}
       <h1>Spis cen roślin</h1>
+      
+      <a href="{% url 'predict-prices' %}" class="btn my-2 menu-btn">Przewiduj ceny</a>
       <div class="row">
         {% for plant_price in plant_prices %}
         <div class="col-sm-4">
@@ -17,5 +19,4 @@
         </div>
         {% endfor %}
       </div>
-      <a href="{% url 'generate-prices' %}" class="btn my-2 menu-btn">Generuj ceny</a>
     {% endblock %}
