@@ -30,7 +30,7 @@ def get_data():
     pass
 
 
-def auto_predict_prices(request, plant_prices_obj):
+def predict_price(request, plant_prices_obj):
     x = []
     y = []
     plant_prices = []

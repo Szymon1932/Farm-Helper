@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\OneDrive - Wojskowa Akademia Techniczna\Pulpit\x\New folder\Farm-Helper\djangoenv"
+VIRTUAL_ENV="D:\OneDrive - Wojskowa Akademia Techniczna\Pulpit\pulpit2\x\New folder\Farm-Helper\djangoenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
