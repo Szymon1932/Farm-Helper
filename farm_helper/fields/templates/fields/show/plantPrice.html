@@ -4,6 +4,8 @@
       
       <a href="{% url 'predict-prices' %}" class="btn my-2 menu-btn">Przewiduj ceny</a>
       <a href="{% url 'generate-prices' %}" class="btn my-2 menu-btn">Generuj ceny</a>
+      <a href="{% url 'calculate' %}" class="btn my-2 menu-btn">Oblicz zysk</a>
+      
       <div class="row">
         {% for plant_price in plant_prices %}
         <div class="col-sm-4">

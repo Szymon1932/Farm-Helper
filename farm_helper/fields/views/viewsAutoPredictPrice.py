@@ -67,7 +67,6 @@ def predict_price(request):
             date=date_to_predict,
             price=future_price,
             is_predicted=1))
-    
     with transaction.atomic():
         PlantPrice.objects.bulk_create(obj)
     return redirect('show-plant_prices')
