@@ -15,7 +15,7 @@ def home():
         class_field = predicted_crop.class_field
         cost_sum = cost_fert + cost_seed
         prediction_and_cost.append(
-            (plant, class_field, cost_sum))
+            (predicted_crop, plant, class_field, cost_sum))
     return (prediction_and_cost) #cost_sum is good
     #return render(request, 'fields/show/viewsCosts.html', {'all_prediction_and_cost': prediction_and_cost})
 
@@ -41,7 +41,6 @@ def get_plant_id(plant_n):
     try:
         plant = Plant.objects.get(plant_name=plant_n)
         plant_id = plant.id
-        print(plant_id)
         return plant_id
     except Plant.DoesNotExist:
         pass
@@ -75,18 +74,16 @@ def calculate_profit(request):
     
     output=[] # plant, class, income
     for c in all_classes:
-        for pl in all_plants: 
-            for pc in all_predicted_crops:
-                for (plant,class_field, cost) in all_costs:
-                    if c == str(pc.class_field):
-                        #print(c,pc.class_field)
-                        
-                        if str(pl.plant_name) == str(pc.plant):
-                            if str(plant)==str(pc.plant): 
-                                
-                                income = pc.crop_mass * get_income(pc.plant) #check specific price
-                                profit = income - cost
-                                output.append((class_field, income, cost, profit))
-    print(output, '\n')
-    return redirect('show-plant_prices')
+        for pc in all_predicted_crops:
+            for (predicted_crop, plant,class_field, cost) in all_costs:
+                if predicted_crop.id == pc.id:
+                    if c == str(pc.class_field) and c == str(class_field) and str(plant)==str(pc.plant):
+                        income = pc.crop_mass * get_income(pc.plant) #check specific price
+                        profit = income - cost
+                        output.append((plant, str(pc.class_field), float(income), float(cost), float(profit)))
+    print(all_costs)
+    print(output)
+    #TODO - 1. Jedno okienko - klasa ziemi, roślina, zysk koszt
+    return render(request, 'fields/show/calculations.html', {'output': output})
+
 

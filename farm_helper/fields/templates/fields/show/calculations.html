@@ -1,0 +1,19 @@
+{% extends 'fields/index.html' %}
+  {% block content %}
+  <h1>Spis kalkulacji</h1>
+  <div class="row">
+    {% for plant_obj, class_field, income, cost, profit in output %}
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ plant_obj }}</h5>
+          <p>Klasa ziemi: {{class_field}}</p>
+          <p>Przychód: {{income|floatformat:2}}</p>
+          <p>Koszt: {{cost|floatformat:2}}</p>
+          <p>Zysk: {{profit|floatformat:2}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
