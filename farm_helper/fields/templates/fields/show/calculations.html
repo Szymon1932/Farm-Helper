@@ -2,7 +2,7 @@
   {% block content %}
   <h1>Spis kalkulacji</h1>
   <div class="row">
-    {% for plant_obj, class_field, income, cost, profit in output %}
+    {% for class_field, profit, plant_obj, income, cost  in output %}
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">

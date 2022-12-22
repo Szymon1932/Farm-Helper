@@ -63,6 +63,7 @@ def get_fertilizer_price(fertilizer_id):  # getting fertilizers
     except Fertilizer.DoesNotExist:
         pass
 
+from operator import itemgetter
 def calculate_profit(request):
     all_costs=home()
     all_predicted_crops = []
@@ -80,10 +81,22 @@ def calculate_profit(request):
                     if c == str(pc.class_field) and c == str(class_field) and str(plant)==str(pc.plant):
                         income = pc.crop_mass * get_income(pc.plant) #check specific price
                         profit = income - cost
-                        output.append((plant, str(pc.class_field), float(income), float(cost), float(profit)))
-    print(all_costs)
+                        output.append((str(pc.class_field),float(profit), plant, float(income), float(cost) ))
+    # print(all_costs)
+    # print(output)
+    output.sort(reverse=1)
     print(output)
+    show_profits(output)
     #TODO - 1. Jedno okienko - klasa ziemi, roślina, zysk koszt
     return render(request, 'fields/show/calculations.html', {'output': output})
 
+def show_profits(output):
+    all_classes=get_all_classes()
 
+    vals = []
+    for c in all_classes:
+        for class_field, profit, plant, income, cost in output:
+            if str(class_field) == str(c): #jeśli mamy wybrany element
+                vals.append((plant, class_field, profit, income, cost))
+                break
+    print(vals)
