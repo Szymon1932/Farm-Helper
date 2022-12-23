@@ -1,0 +1,41 @@
+{% extends 'fields/index.html' %}
+  {% block content %}
+
+  {% if form.errors %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      Błąd podczas wprowadzania danych
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+  {% endif %}
+  <h1>Zarejestruj się</h1>
+  <h2>Wymagania dotyczące zakładania konta</h2>
+  <ul>
+    <li>Nazwa użytownika:<ul>
+      <li>150 znaków lub mniej. Tylko litery, cyfry i @/./+/-/_.</li>
+      
+    </ul> 
+  </li>
+    <li>Hasło:
+      <ul>
+        <li>Nie może być zbyt podobne do innych Twoich danych osobowych.</li>
+        <li>Musi zawierać co najmniej 8 znaków.</li>
+        <li>Nie może być powszechnie używanym hasłem.</li>
+        <li>Nie może składać się wyłącznie z cyfr.</li>
+      </ul>
+
+    </li>
+  </ul>
+  <form action="{% url 'register' %}" method = 'POST'>
+    {% csrf_token %}
+    {% for field in form %}
+      {{field.label}}
+      {{ field }}
+      <br />
+    {% endfor %}
+    <br /><br />
+    <button type="submit" class="btn btn-primary menu-btn">Zarejestruj się</button>
+
+  </form>
+  <br />
+  {% endblock %}

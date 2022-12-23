@@ -3,7 +3,6 @@
   <h1>Zaloguj się</h1>
   <form action="" method = 'POST'>
     {% csrf_token %}
-    <form>
       <div class="form-group ">
         <label for="exampleInputEmail1">Nazwa użytkownika</label>
         <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Nazwa użytkownika">
@@ -16,12 +15,4 @@
   <button type="submit" class="btn btn-primary menu-btn">Zaloguj się</button>
   </form>
   <br />
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      {% endfor %}
-    {% endif %}
   {% endblock %}
