@@ -1,5 +1,5 @@
-from django.urls import path
-from .views import viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice, viewsPredictedCrop, viewsFertilizationPlan, viewsField, viewsCosts, viewsAutoPlantPrice, viewsAutoPredictPrice, viewsPredictOptimal
+from django.urls import path, include
+from .views import viewsUser, viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice, viewsPredictedCrop, viewsFertilizationPlan, viewsField, viewsCosts, viewsAutoPlantPrice, viewsAutoPredictPrice, viewsPredictOptimal
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -93,4 +93,10 @@ urlpatterns = [
          viewsAutoPredictPrice.predict_price, name='predict-prices'),
      path('plant_prices/calculate',
          viewsPredictOptimal.calculate_profit, name='calculate'),
+
+     # user panel
+     path('login/',
+         include('django.contrib.auth.urls')),
+     path('login/',
+         viewsUser.login_user, name='login'),
 ]

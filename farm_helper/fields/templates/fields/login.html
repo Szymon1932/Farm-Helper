@@ -1,115 +1,27 @@
-
-<!-- TODO PREDICTING PRICES -->
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Font Awesome -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-    />
-    <!-- Google Fonts -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-    />
-    <!-- MDB -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
-    rel="stylesheet"
-    />
-    <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} ">
- <title>Pomoc rolnika</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand d-flex flex-column align-items-start active-nav" id="sidebar">
-      <a href="{% url 'index' %}" class="navbar-brand text-light mt-5">
-        <div class="display-5 font-weight-bold">Kordal</div>
-      </a>
-      <ul class="navbar-nav d-flex flex-column mt-5 w-100">
-        
-        <!-- <li class="nav-item w-100">
-          <a href="#" class="nav-link text-light pl-4">Dodaj klasę ziemi</a>
-        </li> -->
-     
-        <li class="nav-item dropdown w-100">
-
-          <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dodawanie</a>
-
-           <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
-              <li><a href="{% url 'add-class_field' %}" class="dropdown-item text-light pl-5 p-2">Dodaj klasę ziemi</a></li>
-              <li><a href="{% url 'add-plant' %}" class="dropdown-item text-light pl-5 p-2">Dodaj roślinę</a></li>
-              <li><a href="{% url 'add-fertilizer' %}" class="dropdown-item text-light pl-5 p-2">Dodaj nawóz</a></li>
-              <li><a href="{% url 'add-plant_price' %}"  class="dropdown-item text-light pl-5 p-2">Dodaj cenę rośliny</a></li>
-              <li><a href="{% url 'add-predicted_crop' %}" class="dropdown-item text-light pl-5 p-2">Dodaj przewidywany plon</a></li>
-              <li><a href="{% url 'add-fertilization_plan' %}" class="dropdown-item text-light pl-5 p-2">Dodaj plan nawożenia</a></li>
-              <li><a href="{% url 'add-field' %}" class="dropdown-item text-light pl-5 p-2">Dodaj pole</a></li>
-             
-            </ul>
-        </li>
-
-        <li class="nav-item dropdown w-100">
-
-          <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Podgląd</a>
-
-           <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
-              <li><a href="{% url 'show-class_fields' %}" class="dropdown-item text-light pl-5 p-2">Pokaż klasy ziemi</a></li>
-              <li><a href="{% url 'show-plants' %}" class="dropdown-item text-light pl-5 p-2">Pokaż rośliny</a></li>
-              <li><a href="{% url 'show-fertilizers' %}" class="dropdown-item text-light pl-5 p-2">Pokaż nawozy</a></li>
-              <li><a href="{% url 'show-plant_prices' %}"  class="dropdown-item text-light pl-5 p-2">Pokaż ceny roślin</a></li>
-              <li><a href="{% url 'show-predicted_crops' %}" class="dropdown-item text-light pl-5 p-2">Pokaż przewidywany plon</a></li>
-              <li><a href="{% url 'show-fertilization_plans' %}" class="dropdown-item text-light pl-5 p-2">Pokaż plany nawożenia</a></li>
-              <li><a href="{% url 'show-fields' %}" class="dropdown-item text-light pl-5 p-2">Pokaż pola</a></li>
-           </ul>
-        </li>
-
-        <li class="nav-item dropdown w-100">
-
-          <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin-test</a>
-
-           <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
-              <li><a href="{% url 'show-costs' %}" class="dropdown-item text-light pl-5 p-2">Pokaż koszt</a></li>
-              <li><a href="{% url 'calculate' %}" class="dropdown-item text-light pl-5 p-2">Pokaż kalkulacje</a></li>
-              
-              <!-- <li><a href="{% url 'add-plant' %}" class="dropdown-item text-light pl-5 p-2">Dodaj roślinę</a></li>
-              <li><a href="{% url 'add-fertilizer' %}" class="dropdown-item text-light pl-5 p-2">Dodaj nawóz</a></li>
-              <li><a href="{% url 'add-plant_price' %}"  class="dropdown-item text-light pl-5 p-2">Dodaj cenę rośliny</a></li>
-              <li><a href="{% url 'add-predicted_crop' %}" class="dropdown-item text-light pl-5 p-2">Dodaj przewidywany plon</a></li>
-              <li><a href="{% url 'add-fertilization_plan' %}" class="dropdown-item text-light pl-5 p-2">Dodaj plan nawożenia</a></li>
-              <li><a href="{% url 'add-field' %}" class="dropdown-item text-light pl-5 p-2">Dodaj pole</a></li> -->
-           </ul>
-        </li>
-      </ul>
-    </nav>
-    
-    <section class="p-4 my-container active-cont">
-      <button class="btn my-4 menu-btn"> Pasek boczny </button>
-      {% block content %}
-      <h1>Aplikacja do wyboru optymalnych produktów rolnych</h1>
-      {% endblock %}
-
-    </section>
-
-
- <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<!-- custom js -->
-<script>
-  var menu_btn = document.querySelector(".menu-btn")
-  var sidebar = document.querySelector("#sidebar")
-  var container = document.querySelector(".my-container")
-  
-  menu_btn.addEventListener("click", () =>{
-    sidebar.classList.toggle("active-nav")
-    container.classList.toggle("active-cont")
-  })
-
-</script>
-
-</body>
-
-</html>
+{% extends 'fields/index.html' %}
+  {% block content %}
+  <h1>Zaloguj się</h1>
+  <form action="" method = 'POST'>
+    {% csrf_token %}
+    <form>
+      <div class="form-group ">
+        <label for="exampleInputEmail1">Nazwa użytkownika</label>
+        <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Nazwa użytkownika">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Hasło</label>
+        <input type="password" class="form-control" name="password" placeholder="Hasło">
+      </div>
+      <br />
+  <button type="submit" class="btn btn-primary menu-btn">Zaloguj się</button>
+  </form>
+  <br />
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endblock %}
