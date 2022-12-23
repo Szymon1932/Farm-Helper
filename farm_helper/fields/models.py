@@ -6,17 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
-
-class User(models.Model):
-    email = models.CharField(max_length=50)
-    password = models.CharField(max_length=20)
-    name = models.CharField(max_length=20)
-    surname = models.CharField(max_length=20)
-
-    class Meta:
-        db_table = 'User'
-
+from django.contrib.auth.models import User
 
 class ClassField(models.Model):
     class_name = models.CharField(max_length=10)
@@ -61,19 +51,20 @@ class PlantPrice(models.Model):
 
 
 class PredictedCrop(models.Model):
-    #name = models.CharField(max_length=50)
+    predicted_crop_name = models.CharField(max_length=50)
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
     crop_mass = models.DecimalField(max_digits=10, decimal_places=2)
-    # Field renamed because it was a Python reserved word.
     class_field = models.ForeignKey(
         ClassField, on_delete=models.CASCADE, db_column='class_id')
 
     class Meta:
         db_table = 'PredictedCrop'
 
+    def __str__(self):
+        return self.predicted_crop_name
+
 
 class FertilizationPlan(models.Model):
-    #name = models.CharField(max_length=50)
     predicted_crop = models.ForeignKey(
         'PredictedCrop', on_delete=models.CASCADE)
     fertilizer = models.ForeignKey('Fertilizer', on_delete=models.CASCADE)
@@ -84,14 +75,13 @@ class FertilizationPlan(models.Model):
 
 
 class Field(models.Model):
-    #name = models.CharField(max_length=50)
+    field_name = models.CharField(max_length=50)
     area = models.DecimalField(max_digits=10, decimal_places=2)
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    fertilization_plan = models.ForeignKey(
-        FertilizationPlan, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    class_field = models.ForeignKey(
+        ClassField, on_delete=models.CASCADE, db_column='class_id')
+
 
     class Meta:
         db_table = 'Field'
 
-# how to save this only for specific user
-# users taken from program

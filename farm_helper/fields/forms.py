@@ -7,6 +7,10 @@ class CreateFertilizer(forms.ModelForm):
     class Meta:
         model = Fertilizer
         fields = '__all__'
+        labels = {
+            'fertilizer_name': 'Nazwa nawozu',
+            'price': 'Cena', #todo zmiana labeli
+        }
 
 
 class CreateClassField(forms.ModelForm):
