@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from ..models import Plant, PlantPrice
 from django.db import transaction, IntegrityError
 from django.http import HttpResponseRedirect, HttpResponse
-
+from django.contrib import messages
 
 def get_price_from_source():
     r = requests.get(
@@ -32,11 +32,15 @@ def auto_add_prices(request):
     output = get_price_from_source()
     obj = []
     for (name, date, price) in (output):
-        obj.append(PlantPrice(
-            plant=Plant.objects.get(plant_name=name),
-            date=date,
-            price=price,
-            is_predicted=0))
+        try:
+            obj.append(PlantPrice(
+                plant=Plant.objects.get(plant_name=name),
+                date=date,
+                price=price,
+                is_predicted=0))
+        except:
+            messages.success(request, ("Błąd podczas wprowadzania danych"))
+            return redirect('index')
 
     with transaction.atomic():
         PlantPrice.objects.bulk_create(obj)

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from ..models import Plant
 from ..forms import CreatePlant
 from django.http import HttpResponse
-
+from django.contrib import messages
 
 def show_plants(request):
     plants = Plant.objects.all()
@@ -18,10 +18,18 @@ def add_plant(request):
     if request.method == 'POST':
         add_plant = CreatePlant(request.POST, request.FILES)
         if add_plant.is_valid():
-            add_plant.save()
-            return redirect('show-plants')  # name in urls
+            if(add_plant.cleaned_data['seed_price']>0):
+                plant = Plant.objects.create(
+                plant_name=add_plant.cleaned_data['plant_name'],
+                seed_price=add_plant.cleaned_data['seed_price']
+                )
+                plant.save()
+                return redirect('show-plants')
+            else:
+                messages.success(request, ("Błąd podczas wprowadzania danych"))
+                return redirect('show-plants')
         else:
-            return HttpResponse("""Błędne dane. <a href = "{{ url : 'show-plants'}}">Odśwież</a>""")
+            return redirect('show-plants')
     else:
         return render(request, 'fields/add/addPlant.html', {'upload_form': add_plant})
 
@@ -35,9 +43,14 @@ def update_plant(request, plant_id):
     plant_form = CreatePlant(
         request.POST or None, instance=plant_obj)
     if plant_form.is_valid():
-        plant_form.save()
-        return redirect('show-plants')
-    return render(request, 'fields/add/addPlant.html', {'upload_form': plant_form})
+        if(plant_form.cleaned_data['seed_price']>0):
+            plant_form.save()
+            return redirect('show-plants')
+        else:
+            messages.success(request, ("Błąd podczas wprowadzania danych"))
+            return redirect('show-plants')
+    else:
+        return render(request, 'fields/add/addPlant.html', {'upload_form': plant_form})
 
 
 def delete_plant(request, plant_id):

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import viewsUser, viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice, viewsPredictedCrop, viewsFertilizationPlan, viewsField, viewsCosts, viewsAutoPlantPrice, viewsAutoPredictPrice, viewsPredictOptimal
+from .views import viewsAutoPlant ,viewsUser, viewsFertilizer, viewsClassField, viewsPlant, viewsPlantPrice, viewsPredictedCrop, viewsFertilizationPlan, viewsField, viewsCosts, viewsAutoPlantPrice, viewsAutoPredictPrice, viewsPredictOptimal
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -33,7 +33,9 @@ urlpatterns = [
     path('plants/delete/<int:plant_id>',
          viewsPlant.delete_plant),
 
-
+     # auto-plants
+     path('plants/auto-add/',
+         viewsAutoPlant.add_plant_auto, name='add-plants-auto'),
     # plant_prices
 
     path('plant_prices/', viewsPlantPrice.show_plant_prices,

@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from ..models import *
 from ..forms import *
 from django.http import HttpResponse
-
+from django.contrib import messages
 
 def show_fields(request):
-    fields = Field.objects.filter(user = request.user)
+    fields = Field.objects.filter(user = request.user.id)
     return render(request, 'fields/show/field.html', {'fields': fields})
 
 
@@ -18,16 +18,21 @@ def add_field(request):
     if request.method == 'POST':
         add_field = CreateField(request.POST, request.FILES)
         if add_field.is_valid():
-            field = Field.objects.create(
-                    field_name = add_field.cleaned_data['field_name'],
-                    area = add_field.cleaned_data["area"],
-                    user = request.user,
-                    class_field = add_field.cleaned_data["class_field"],
-                )
-            field.save()
-            return redirect('show-fields')  # name in urls
+            if(add_field.cleaned_data['area']>0):
+                field = Field.objects.create(
+                        field_name = add_field.cleaned_data['field_name'],
+                        area = add_field.cleaned_data["area"],
+                        user = request.user.id,
+                        class_field = add_field.cleaned_data["class_field"],
+                    )
+                field.save()
+                return redirect('show-fields')
+            else:
+                messages.success(request, ("Błąd podczas wprowadzania danych"))
+                return redirect('show-fields')
         else:
-            return HttpResponse("""Błędne dane. <a href = "{{ url : 'show-fields'}}">Odśwież</a>""")
+            messages.success(request, ("Błąd podczas wprowadzania danych"))
+            return redirect('show-fields')
     else:
         return render(request, 'fields/add/addField.html', {'upload_form': add_field})
 
@@ -41,8 +46,12 @@ def update_field(request, field_id):
     field_form = CreateField(
         request.POST or None, instance=field_obj)
     if field_form.is_valid():
-        field_form.save()
-        return redirect('show-fields')
+        if(field_form.cleaned_data['area']>0):
+            field_form.save()
+            return redirect('show-fields')
+        else:
+            messages.success(request, ("Błąd podczas wprowadzania danych"))
+            return redirect('show-fields')
     return render(request, 'fields/add/addField.html', {'upload_form': field_form})
 
 

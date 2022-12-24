@@ -1,6 +1,7 @@
 {% extends 'fields/index.html' %}
       {% block content %}
       <h1>Spis roślin</h1>
+      <a href="{% url 'add-plants-auto' %}" class="btn my-2 menu-btn">Dodaj bazę roślin</a>
       <div class="row">
         {% for plant in plants %}
         <div class="col-sm-4">

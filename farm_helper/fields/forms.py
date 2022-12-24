@@ -14,17 +14,15 @@ class RegisterUserForm(UserCreationForm):
         model = User
         fields = ('username', 'password1', 'password2')
         #fields = ('username', 'first_name', 'last_name', 'password1', 'password2')
-
+        
     def __init__(self, *args, **kwargs):
         super(RegisterUserForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
-        
-        # self['username'].help_text = 'Wymagana. 150 znaków lub mniej. Tylko litery, cyfry i @/./+/-/_.'
-        
-        # self['password1'].help_text = 'Twoje hasło nie może być zbyt podobne do innych Twoich danych osobowych. \n Twoje hasło musi zawierać co najmniej 8 znaków. Twoje hasło nie może być powszechnie używanym hasłem. Twoje hasło nie może składać się wyłącznie z cyfr.'
-        # self['password2'].help_text = ''
+        self.fields['username'].label='Nazwa użytkownika'
+        self.fields['password1'].label='Hasło'
+        self.fields['password2'].label='Powtórz hasło'
     
 
 class CreateFertilizer(forms.ModelForm):
@@ -34,7 +32,7 @@ class CreateFertilizer(forms.ModelForm):
         fields = '__all__'
         labels = {
             'fertilizer_name': 'Nazwa nawozu',
-            'price': 'Cena', #todo zmiana labeli
+            'price': 'Cena za tonę',
         }
 
 
@@ -42,6 +40,7 @@ class CreateClassField(forms.ModelForm):
     class Meta:
         model = ClassField
         fields = '__all__'
+        
 
 
 class CreatePlant(forms.ModelForm):
@@ -49,7 +48,10 @@ class CreatePlant(forms.ModelForm):
     class Meta:
         model = Plant
         fields = '__all__'
-
+        labels = {
+            'plant_name': 'Nazwa rośliny',
+            'seed_price': 'Cena za tonę',
+        }
 
 DATE_INPUT_FORMATS = ('%d/%m/%Y', '%d-%m-%Y', '%Y-%m-%d')
 
@@ -59,12 +61,16 @@ class DatePickerInput(forms.DateInput):
 
 
 class CreatePlantPrice(forms.ModelForm):
-    # date = forms.DateField(widget=forms.DateInput(format='%d/%m/%Y'), input_formats=DATE_INPUT_FORMATS)  # add better formatting and filerting
     date = forms.DateField(widget=DatePickerInput)
 
     class Meta:
         model = PlantPrice
-        fields = '__all__'
+        fields = ('price', 'date', 'plant')
+    def __init__(self, *args, **kwargs):
+        super(CreatePlantPrice, self).__init__(*args, **kwargs)
+        self.fields['price'].label='Cena rośliny'
+        self.fields['date'].label='Data'
+        self.fields['plant'].label='Roślina'
 
 
 class CreatePredictedCrop(forms.ModelForm):
@@ -72,23 +78,31 @@ class CreatePredictedCrop(forms.ModelForm):
     class Meta:
         model = PredictedCrop
         fields = '__all__'
-
+        labels = {
+            'predicted_crop_name': 'Nazwa przewidywanego plonu',
+            'plant': 'Nazwa rośliny',
+            'crop_mass': 'Masa plonu (t)',
+            'class_field': 'Klasa ziemi',
+        }
 
 class CreateFertilizationPlan(forms.ModelForm):
 
     class Meta:
         model = FertilizationPlan
         fields = '__all__'
-
+        labels = {
+            'predicted_crop': 'Nazwa przewidywanego plonu',
+            'fertilizer': 'Nazwa nawozu',
+            'fertilizer_mass': 'masa nawozu (t)',
+        }
 
 class CreateField(forms.ModelForm):
 
     class Meta:
         model = Field
-        # fields = '__all__'
         fields = ('field_name','area','class_field')
-        
-        # self['username'].help_text = 'Wymagana. 150 znaków lub mniej. Tylko litery, cyfry i @/./+/-/_.'
-        
-        # self['password1'].help_text = 'Twoje hasło nie może być zbyt podobne do innych Twoich danych osobowych. \n Twoje hasło musi zawierać co najmniej 8 znaków. Twoje hasło nie może być powszechnie używanym hasłem. Twoje hasło nie może składać się wyłącznie z cyfr.'
-        # self['password2'].help_text = ''
+        labels = {
+            'field_name': 'Nazwa pola',
+            'area': 'Powierzchnia (ha)',
+            'class_field': 'Klasa ziemi',
+        }

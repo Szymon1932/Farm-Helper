@@ -1,22 +1,24 @@
+import random
 from django.shortcuts import render, redirect
-#from ..models import Plant
-from ..forms import CreatePlant
+from ..models import Plant
+from django.db import transaction
+# from ..forms import CreatePlant
 #from django.http import HttpResponse
 
 
 def add_plant_auto(request):
-    add_plant = CreatePlant()
     names = ['Pszenica konsumpcyjna', 'Kukurydza mokra', 'Kukurydza sucha', 'Żyto konsumpcyjne', 'Pszenżyto',
              'Jęczmień paszowy', 'Rzepak', 'Żyto paszowe', 'Owies', 'Jęczmień konsumpcyjny', 'Pszenica paszowa']
-    iterator = 0
-    price = 100.0
-    if request.method == 'POST':
-        for n in names:
-            add_plant = CreatePlant(request.POST)
-            add_plant.plant_name = n
-            iterator = iterator + 1
-            price = price * iterator
-            add_plant.seed_price = price
-            if add_plant.is_valid():
-                add_plant.save()
+    
+    obj=[]
+    for name in names:
+        try:
+            obj.append(Plant(
+                plant_name=name,
+                seed_price=random.randrange(50,150)))
+        except:
+            pass
+
+    with transaction.atomic():
+        Plant.objects.bulk_create(obj)
     return redirect('show-plants')  # name in urls

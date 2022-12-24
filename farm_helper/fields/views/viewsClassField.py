@@ -11,16 +11,3 @@ def show_class_fields(request):
 
 def index(request):
     return render(request, 'fields/index.html')
-
-
-# def add_class_field(request):
-#     add_class_field = CreateClassField()
-#     if request.method == 'POST':
-#         add_class_field = CreateClassField(request.POST, request.FILES)
-#         if add_class_field.is_valid():
-#             add_class_field.save()
-#             return redirect('show-class_fields')  # name in urls
-#         else:
-#             return HttpResponse("""Błędne dane. <a href = "{{ url : 'show-class_fields'}}">Odśwież</a>""")
-#     else:
-#         return render(request, 'fields/add/addClassField.html', {'upload_form': add_class_field})

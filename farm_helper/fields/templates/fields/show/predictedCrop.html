@@ -6,10 +6,10 @@
         <div class="col-sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ predicted_crop.plant}}</h5>
-              <p class="card-text">{{ predicted_crop.crop_mass}}</p>
-              <p class="card-text">{{ predicted_crop.class_field}}</p>
-              <p class="card-text">id: {{ predicted_crop.id}}</p>
+              <h5 class="card-title">Nazwa: {{ predicted_crop.predicted_crop_name}}</h5>
+              <p class="card-title">Roślina: {{ predicted_crop.plant}}</p>
+              <p class="card-text">Przewidywany plon: {{ predicted_crop.crop_mass}}t</p>
+              <p class="card-text">Klasa ziemi: {{ predicted_crop.class_field}}</p>
               <a href="update/{{predicted_crop.id}}" class="btn my-2 menu-btn">Edytuj</a>
               <a href="delete/{{predicted_crop.id}}" class="btn my-2 menu-btn">Usuń</a>
             </div>
