@@ -7,6 +7,7 @@ from django.db import transaction
 
 
 def add_plant_auto(request):
+    Plant.objects.all().delete()
     names = ['Pszenica konsumpcyjna', 'Kukurydza mokra', 'Kukurydza sucha', 'Żyto konsumpcyjne', 'Pszenżyto',
              'Jęczmień paszowy', 'Rzepak', 'Żyto paszowe', 'Owies', 'Jęczmień konsumpcyjny', 'Pszenica paszowa']
     

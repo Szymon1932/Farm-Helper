@@ -4,6 +4,17 @@ from ..forms import CreateFertilizer
 from django.http import HttpResponse
 from django.contrib import messages
 
+def get_all_fertilizer_names():
+    fertilizer_names=[]
+    for p in Fertilizer.objects.all():
+        fertilizer_names.append(p.fertilizer_name.lower())
+    return set(fertilizer_names) #lista klas
+
+def name_exists(name):
+    fertilizer_names = get_all_fertilizer_names()
+    if name.lower() in fertilizer_names:
+        return True
+
 def show_fertilizers(request):
     fertilizers = Fertilizer.objects.all()
     return render(request, 'fields/show/fertilizer.html', {'fertilizers': fertilizers})
@@ -19,7 +30,7 @@ def add_fertilizer(request):
         add_fertilizer = CreateFertilizer(request.POST, request.FILES)
         
         if add_fertilizer.is_valid():
-            if(add_fertilizer.cleaned_data['price']>0):
+            if(add_fertilizer.cleaned_data['price']>0) and not(name_exists(add_fertilizer.cleaned_data['fertilizer_name'])):
                 fertilizer = Fertilizer.objects.create(
                 fertilizer_name=add_fertilizer.cleaned_data['fertilizer_name'],
                 price=add_fertilizer.cleaned_data['price']

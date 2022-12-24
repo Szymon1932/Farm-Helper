@@ -4,6 +4,18 @@ from ..forms import CreatePlant
 from django.http import HttpResponse
 from django.contrib import messages
 
+
+def get_all_plant_names():
+    plant_names=[]
+    for p in Plant.objects.all():
+        plant_names.append(p.plant_name.lower())
+    return set(plant_names) #lista klas
+
+def name_exists(name):
+    plant_names = get_all_plant_names()
+    if name.lower() in plant_names:
+        return True
+        
 def show_plants(request):
     plants = Plant.objects.all()
     return render(request, 'fields/show/plant.html', {'plants': plants})
@@ -18,7 +30,7 @@ def add_plant(request):
     if request.method == 'POST':
         add_plant = CreatePlant(request.POST, request.FILES)
         if add_plant.is_valid():
-            if(add_plant.cleaned_data['seed_price']>0):
+            if(add_plant.cleaned_data['seed_price']>0) and not(name_exists(add_plant.cleaned_data['plant_name'])):
                 plant = Plant.objects.create(
                 plant_name=add_plant.cleaned_data['plant_name'],
                 seed_price=add_plant.cleaned_data['seed_price']
