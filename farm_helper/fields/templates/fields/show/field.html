@@ -6,9 +6,10 @@
         <div class="col-sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ field.area}}</h5>
-              <p class="card-text">{{ field.user}}</p>
-              <p class="card-text">{{ field.fertilization_plan}}</p>
+              <h5 class="card-title">Nazwa pola: {{ field.field_name}}</h5>
+              <p class="card-title">Powierzchnia: {{ field.area}}ha</p>
+              <p class="card-text">Klasa ziemi: {{ field.class_field}}</p>
+              <p class="card-text">Użytkownik: {{ field.user}}</p>
               <a href="update/{{field.id}}" class="btn my-2 menu-btn">Edytuj</a>
               <a href="delete/{{field.id}}" class="btn my-2 menu-btn">Usuń</a>
             </div>

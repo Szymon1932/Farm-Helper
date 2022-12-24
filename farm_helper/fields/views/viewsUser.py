@@ -12,6 +12,8 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, ("Zalogowano pomyślnie"))
+
             return redirect('index')
         else:
             messages.success(request, ("Nieprawidłowe dane logowania"))

@@ -41,7 +41,7 @@
           <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dodawanie</a>
 
            <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
-              <li><a href="{% url 'add-class_field' %}" class="dropdown-item text-light pl-5 p-2">Dodaj klasę ziemi</a></li>
+              {% comment %} <li><a href="{% url 'add-class_field' %}" class="dropdown-item text-light pl-5 p-2">Dodaj klasę ziemi</a></li> {% endcomment %}
               <li><a href="{% url 'add-plant' %}" class="dropdown-item text-light pl-5 p-2">Dodaj roślinę</a></li>
               <li><a href="{% url 'add-fertilizer' %}" class="dropdown-item text-light pl-5 p-2">Dodaj nawóz</a></li>
               <li><a href="{% url 'add-plant_price' %}"  class="dropdown-item text-light pl-5 p-2">Dodaj cenę rośliny</a></li>

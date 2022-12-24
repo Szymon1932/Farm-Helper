@@ -85,4 +85,10 @@ class CreateField(forms.ModelForm):
 
     class Meta:
         model = Field
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ('field_name','area','class_field')
+        
+        # self['username'].help_text = 'Wymagana. 150 znaków lub mniej. Tylko litery, cyfry i @/./+/-/_.'
+        
+        # self['password1'].help_text = 'Twoje hasło nie może być zbyt podobne do innych Twoich danych osobowych. \n Twoje hasło musi zawierać co najmniej 8 znaków. Twoje hasło nie może być powszechnie używanym hasłem. Twoje hasło nie może składać się wyłącznie z cyfr.'
+        # self['password2'].help_text = ''

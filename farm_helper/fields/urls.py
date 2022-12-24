@@ -19,12 +19,8 @@ urlpatterns = [
 
     path('class_fields/', viewsClassField.show_class_fields,
          name='show-class_fields'),
-    path('class_fields/add_element/',
-         viewsClassField.add_class_field, name='add-class_field'),
-    path('class_fields/update/<int:class_field_id>',
-         viewsClassField.update_class_field),
-    path('class_fields/delete/<int:class_field_id>',
-         viewsClassField.delete_class_field),
+#     path('class_fields/add_element/',
+#          viewsClassField.add_class_field, name='add-class_field'),
 
     # plants
 

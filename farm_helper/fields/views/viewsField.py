@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 
 def show_fields(request):
-    fields = Field.objects.all()
+    fields = Field.objects.filter(user = request.user)
     return render(request, 'fields/show/field.html', {'fields': fields})
 
 
@@ -18,7 +18,13 @@ def add_field(request):
     if request.method == 'POST':
         add_field = CreateField(request.POST, request.FILES)
         if add_field.is_valid():
-            add_field.save()
+            field = Field.objects.create(
+                    field_name = add_field.cleaned_data['field_name'],
+                    area = add_field.cleaned_data["area"],
+                    user = request.user,
+                    class_field = add_field.cleaned_data["class_field"],
+                )
+            field.save()
             return redirect('show-fields')  # name in urls
         else:
             return HttpResponse("""Błędne dane. <a href = "{{ url : 'show-fields'}}">Odśwież</a>""")
