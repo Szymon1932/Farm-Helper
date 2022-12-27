@@ -32,10 +32,6 @@
       </a>
       <ul class="navbar-nav d-flex flex-column mt-5 w-100">
         
-        <!-- <li class="nav-item w-100">
-          <a href="#" class="nav-link text-light pl-4">Dodaj klasę ziemi</a>
-        </li> -->
-     
         <li class="nav-item dropdown w-100">
 
           <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dodawanie</a>
@@ -69,7 +65,15 @@
               {% endif %}
             </ul>
         </li>
+        <li class="nav-item dropdown w-100">
 
+          <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Obliczenia</a>
+
+          <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
+            <li><a href="{% url 'calculate' %}" class="dropdown-item text-light pl-5 p-2">Pokaż kalkulacje</a></li>
+            <li><a href="{% url 'optimal_class' %}" class="dropdown-item text-light pl-5 p-2">Pokaż optymalny zasiew klasy</a></li>
+          </ul>
+        </li>
         <li class="nav-item dropdown w-100">
 
           <a href="#" class="nav-link dropdown-toggle text-light  pl-4" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Użytkownik</a>

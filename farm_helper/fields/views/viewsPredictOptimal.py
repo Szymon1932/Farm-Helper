@@ -22,17 +22,14 @@ def show_profits(output):
     for c in all_classes:
         for class_field, profit, plant, income, cost, predicted_crop in output:
             if str(class_field) == str(c): 
-                vals.append((plant, class_field, profit, income, cost, predicted_crop.predicted_crop_name))
+                vals.append((plant, class_field, float(profit), income, cost, predicted_crop.predicted_crop_name))
                 break
-    print(vals) 
+    return vals
 
-def calculate_profit(request):
+def process_profit():
     all_costs=home()
     all_predicted_crops = []
     all_predicted_crops = PredictedCrop.objects.all() 
-    all_plants = get_all_plants()
-
-    all_prices=get_all_prices() 
     all_classes=get_all_classes()
     
     output=[] 
@@ -47,6 +44,15 @@ def calculate_profit(request):
 
     output.sort(reverse=1)
     print(output)
-    show_profits(output)
-    return render(request, 'fields/show/calculations.html', {'output': output})
+    return output
 
+
+
+def calculate_profit(request):
+    output=process_profit()
+    return render(request, 'fields/show/calculations.html', {'output': output})
+    
+def optimal_class_profit(request):
+    output=process_profit()
+    output=show_profits(output)
+    return render(request, 'fields/show/optimalClass.html', {'output': output})

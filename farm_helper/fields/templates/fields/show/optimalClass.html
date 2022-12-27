@@ -2,15 +2,16 @@
   {% block content %}
   <h1>Spis kalkulacji</h1>
   <div class="row">
-    {% for class_field, profit, plant_obj, income, cost, predicted_crop in output %}
+    {% for plant, class_field, profit, income, cost, predicted_crop_name in output %}
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ plant_obj }}</h5>
-          <p>Klasa ziemi: {{class_field}}</p>
+          <h5 class="card-title">Klasa ziemi: {{class_field}}</h5>
+          <p>Zysk: {{profit|floatformat:2}}</p>
+          <p>Roślina: {{plant}}</p>
           <p>Przychód: {{income|floatformat:2}}</p>
           <p>Koszt: {{cost|floatformat:2}}</p>
-          <p>Zysk: {{profit|floatformat:2}}</p>
+          <p>Przewidywany plon: {{predicted_crop_name}}</p>
         </div>
       </div>
     </div>
