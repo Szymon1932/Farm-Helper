@@ -30,8 +30,8 @@ def predict_price(request):
 
     all_plants=get_all_plant_names()
     for i in all_plants:
-        for p in get_all_plants():
-            if p.plant == i and p.is_predicted==0:
+        for p in get_all_previous_prices():
+            if str(p.plant).lower() == str(i).lower() :
                 timestamp = int(calendar.timegm(p.date.timetuple()))
                 dates.append(datetime.utcfromtimestamp(timestamp))
                 dates_timestamp.append(timestamp)
@@ -46,7 +46,7 @@ def predict_price(request):
         future_price = model(X,Y,date_to_predict_timestamp)
 
         obj.append(PlantPrice(
-            plant=Plant.objects.get(plant_name=i),
+            plant=Plant.objects.get(plant_name=i.capitalize()),
             date=date_to_predict,
             price=future_price,
             is_predicted=1))

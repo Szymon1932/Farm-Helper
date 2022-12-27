@@ -40,6 +40,10 @@ def get_all_classes():
         classes.append(p.class_name)
     return set(classes)
 
+def get_all_previous_prices():
+    plant_prices_obj = PlantPrice.objects.filter(is_predicted=0)
+    return plant_prices_obj
+
 def get_all_prices():
     plant_prices_obj = PlantPrice.objects.filter(is_predicted=1)
     return plant_prices_obj
