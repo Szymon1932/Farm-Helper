@@ -3,12 +3,7 @@ from ..models import Fertilizer
 from ..forms import CreateFertilizer
 from django.http import HttpResponse
 from django.contrib import messages
-
-def get_all_fertilizer_names():
-    fertilizer_names=[]
-    for p in Fertilizer.objects.all():
-        fertilizer_names.append(p.fertilizer_name.lower())
-    return set(fertilizer_names) #lista klas
+from .getElements import *
 
 def name_exists(name):
     fertilizer_names = get_all_fertilizer_names()

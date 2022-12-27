@@ -1,9 +1,7 @@
 import random
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from ..models import Plant
 from django.db import transaction
-# from ..forms import CreatePlant
-#from django.http import HttpResponse
 
 
 def add_plant_auto(request):

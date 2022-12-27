@@ -1,15 +1,9 @@
 from django.shortcuts import render, redirect
 from ..models import Plant
 from ..forms import CreatePlant
-from django.http import HttpResponse
 from django.contrib import messages
+from .getElements import *
 
-
-def get_all_plant_names():
-    plant_names=[]
-    for p in Plant.objects.all():
-        plant_names.append(p.plant_name.lower())
-    return set(plant_names) #lista klas
 
 def name_exists(name):
     plant_names = get_all_plant_names()

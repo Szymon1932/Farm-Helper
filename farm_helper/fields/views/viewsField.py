@@ -22,7 +22,7 @@ def add_field(request):
                 field = Field.objects.create(
                         field_name = add_field.cleaned_data['field_name'],
                         area = add_field.cleaned_data["area"],
-                        user = request.user.id,
+                        user = request.user,
                         class_field = add_field.cleaned_data["class_field"],
                     )
                 field.save()

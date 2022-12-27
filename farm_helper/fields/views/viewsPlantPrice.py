@@ -1,9 +1,6 @@
-import requests
-from datetime import datetime
 from django.shortcuts import render, redirect
-from ..models import PlantPrice, Plant
+from ..models import PlantPrice
 from ..forms import CreatePlantPrice
-from django.http import HttpResponse
 from django.contrib import messages
 
 def show_plant_prices(request):

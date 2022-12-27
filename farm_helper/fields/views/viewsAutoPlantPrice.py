@@ -2,8 +2,7 @@ from datetime import datetime
 import requests
 from django.shortcuts import render, redirect
 from ..models import Plant, PlantPrice
-from django.db import transaction, IntegrityError
-from django.http import HttpResponseRedirect, HttpResponse
+from django.db import transaction
 from django.contrib import messages
 
 def get_price_from_source():
@@ -45,4 +44,3 @@ def auto_add_prices(request):
     with transaction.atomic():
         PlantPrice.objects.bulk_create(obj)
     return redirect('show-plant_prices')
-    # return render(request, 'fields/add/addFertilizer.html', {'upload_form': add_fertilizer})
