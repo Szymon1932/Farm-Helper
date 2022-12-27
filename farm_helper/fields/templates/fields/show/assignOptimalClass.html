@@ -1,17 +1,18 @@
 {% extends 'fields/index.html' %}
   {% block content %}
-  <h1>Spis optymalnych kalkulacji</h1>
+  <h1>Spis przyporządkowanych optymalnych kalkulacji</h1>
   <div class="row">
-    {% for plant, class_field, profit, income, cost, predicted_crop_name in output %}
+    {% for field_name, class_field, plant, predicted_crop_name, income, cost, profit in output %}
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Klasa ziemi: {{class_field}}</h5>
-          <p>Zysk: {{profit|floatformat:2}}</p>
+          <h5 class="card-title">Nazwa pola: {{field_name}}</h5>
+          <p>Klasa ziemi: {{class_field}}</p>
           <p>Roślina: {{plant}}</p>
+          <p>Przewidywany plon: {{predicted_crop_name}}</p>
+          <p>Zysk: {{profit|floatformat:2}}</p>
           <p>Przychód: {{income|floatformat:2}}</p>
           <p>Koszt: {{cost|floatformat:2}}</p>
-          <p>Przewidywany plon: {{predicted_crop_name}}</p>
         </div>
       </div>
     </div>

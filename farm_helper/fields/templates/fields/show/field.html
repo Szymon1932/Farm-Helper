@@ -1,7 +1,7 @@
 {% extends 'fields/index.html' %}
       {% block content %}
       <h1>Spis pól</h1>
-      <a href="{% url 'calculate' %}" class="btn my-2 menu-btn">Przyporządkuj plan</a>
+      <a href="{% url 'assign_optimal_class' %}" class="btn my-2 menu-btn">Przyporządkuj plan</a>
       <div class="row">
         {% for field in fields %}
         <div class="col-sm-4">

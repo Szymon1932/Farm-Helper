@@ -93,6 +93,8 @@ urlpatterns = [
          viewsPredictOptimal.calculate_profit, name='calculate'),
      path('plant_prices/optimal_class',
          viewsPredictOptimal.optimal_class_profit, name='optimal_class'),
+     path('plant_prices/assign_optimal_class',
+         viewsPredictOptimal.assign_optimal_class_profit, name='assign_optimal_class'),
 
      # user panel
      path('login/',

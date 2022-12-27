@@ -1,3 +1,4 @@
+from ..models import Field
 from .viewsCosts import *
 from .getElements import *
 
@@ -56,3 +57,20 @@ def optimal_class_profit(request):
     output=process_profit()
     output=show_profits(output)
     return render(request, 'fields/show/optimalClass.html', {'output': output})
+
+def assign_optimal_class_profit(request):
+    all_profits=process_profit()
+    all_profits=show_profits(all_profits)
+    all_fields = Field.objects.filter(user = request.user.id)
+    all_classes = get_all_classes()
+    output=[]
+    for field in all_fields:
+        for c in all_classes:
+            if str(c)==str(field.class_field):
+                for plant, class_field, profit, income, cost, predicted_crop_name in all_profits:
+                    if str(c) == str(class_field):
+                        profit = profit * float(field.area)
+                        cost = cost * float(field.area)
+                        income = income * float(field.area)
+                        output.append((field.field_name, class_field, plant, predicted_crop_name, income, cost, profit))
+    return render(request, 'fields/show/assignOptimalClass.html', {'output': output})
