@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import *
+from models import *
 from django.urls import reverse
 
 class PlantListViewTest(TestCase):
@@ -11,7 +11,7 @@ class PlantListViewTest(TestCase):
             Plant.objects.create(plant_name=f"Plant{plant_id}", seed_price=f"{price}")
     
     def test_url_exists(self):
-        response = self.client.get("/plants/")
+        response = self.client.get("/plants")
         self.assertEqual(response.status_code, 200)
     
     def test_url_accessible_by_name(self):
@@ -22,5 +22,3 @@ class PlantListViewTest(TestCase):
         response = self.client.get(reverse('show-plants'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'fields/show/plant.html')
-# Create your tests here.
-#brak przyszłych cen powoduje błąd predykcji -> fix

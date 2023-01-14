@@ -27,7 +27,9 @@ def get_price_from_source():
 
 
 def auto_add_prices(request):
-
+    
+    PlantPrice.objects.filter(is_predicted=0).delete()
+    PlantPrice.objects.filter(is_predicted=1).delete()
     output = get_price_from_source()
     obj = []
     for (name, date, price) in (output):
