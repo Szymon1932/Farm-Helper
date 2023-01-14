@@ -49,6 +49,9 @@ class PlantPrice(models.Model):
     class Meta:
         db_table = 'PlantPrice'
 
+    def __str__(self):
+        return str(self.price)
+
 
 class PredictedCrop(models.Model):
     predicted_crop_name = models.CharField(max_length=50)
@@ -72,7 +75,9 @@ class FertilizationPlan(models.Model):
 
     class Meta:
         db_table = 'FertilizationPlan'
-
+    
+    def __str__(self):
+        return str(self.fertilizer_mass)
 
 class Field(models.Model):
     field_name = models.CharField(max_length=50)
@@ -81,7 +86,7 @@ class Field(models.Model):
     class_field = models.ForeignKey(
         ClassField, on_delete=models.CASCADE, db_column='class_id')
 
-
     class Meta:
         db_table = 'Field'
-
+    def __str__(self):
+        return self.field_name
