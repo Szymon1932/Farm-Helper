@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from ..models import Fertilizer
 from ..forms import CreateFertilizer
-from django.http import HttpResponse
 from django.contrib import messages
 from .getElements import *
 

@@ -14,10 +14,10 @@ def add_plant_auto(request):
         try:
             obj.append(Plant(
                 plant_name=name,
-                seed_price=random.randrange(50,150)))
+                seed_price=random.randrange(500,800)))
         except:
             pass
 
     with transaction.atomic():
         Plant.objects.bulk_create(obj)
-    return redirect('show-plants')  # name in urls
+    return redirect('show-plants') 

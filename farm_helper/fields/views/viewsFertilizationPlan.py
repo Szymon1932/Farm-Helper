@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from ..models import *
 from ..forms import *
-from django.http import HttpResponse
 from django.contrib import messages
 
 def show_fertilization_plans(request):

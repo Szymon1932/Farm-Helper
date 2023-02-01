@@ -44,7 +44,6 @@ def process_profit():
                         output.append((str(pc.class_field),float(profit), plant, float(income), float(cost), predicted_crop ))
 
     output.sort(reverse=1)
-    print(output)
     return output
 
 

@@ -12,10 +12,8 @@ from .getElements import *
 def model(x,y, x_max):
     X=np.asarray(x, dtype=float)
     Y=np.asarray(y, dtype=float)
-    slope, intercept, r, p, std_err = stats.linregress(X, Y) # celem nie jest dokładne przewidywanie ceny, a bardziej zarządzanie polami
-    #można udoskonalić model w przyszłości
+    slope, intercept, r, p, std_err = stats.linregress(X, Y)
     y_max = slope * x_max + intercept 
-    print(r)
     return y_max
 
 def predict_price(request):

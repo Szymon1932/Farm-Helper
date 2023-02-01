@@ -13,7 +13,6 @@ def home(request):
         cost_sum = cost_fert + cost_seed
         prediction_and_cost.append(
             (predicted_crop, cost_fert, cost_seed, cost_sum))
-    print(prediction_and_cost)
     return render(request, 'fields/show/viewsCosts.html', {'all_prediction_and_cost': prediction_and_cost})
 
 
@@ -23,7 +22,7 @@ def cost_of_fertilization(pred_crop_id):
     cost = 0
 
     for f in all_fert_plans:
-        cost += get_fertilizer_price(f.fertilizer_id) * f.fertilizer_mass #from getElements
+        cost += get_fertilizer_price(f.fertilizer_id) * f.fertilizer_mass
     return cost
 
 

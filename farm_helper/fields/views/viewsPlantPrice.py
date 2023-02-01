@@ -25,7 +25,7 @@ def add_plant_price(request):
                 is_predicted=0
                 )
                 plant_price.save()
-                return redirect('show-plant_prices')  # name in urls
+                return redirect('show-plant_prices')
             else:
                 messages.success(request, ("Błąd podczas wprowadzania danych"))
                 return redirect('show-plant_prices')
